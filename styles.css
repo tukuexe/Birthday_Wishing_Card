@@ -1,0 +1,414 @@
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --accent-color: #fd79a8;
+    --text-color: #2d3436;
+    --light-text: #f5f6fa;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--light-text);
+}
+
+.logo i {
+    font-size: 28px;
+    color: var(--accent-color);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+.creator-card {
+    text-align: center;
+}
+
+.creator-card h1 {
+    color: var(--light-text);
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.creator-card p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--light-text);
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background: #5a4bd1;
+    transform: translateY(-2px);
+}
+
+#photoInput {
+    display: none;
+}
+
+#fileName {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.submit-btn:hover {
+    background: #5a4bd1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+/* Result Section */
+.result-card {
+    text-align: center;
+}
+
+.result-header h2 {
+    color: var(--light-text);
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.result-header p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.share-link {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#generatedLink {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.copy-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #e84393;
+    transform: translateY(-2px);
+}
+
+.preview-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.preview-container h3 {
+    color: var(--light-text);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.preview-content {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.new-card-btn {
+    background: transparent;
+    color: var(--light-text);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.new-card-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Birthday Card Preview Styles */
+.birthday-card {
+    text-align: center;
+}
+
+.birthday-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.celebration-gif {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.birthday-message {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: var(--light-text);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.birthday-name {
+    font-size: 28px;
+    color: white;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+footer i {
+    color: var(--accent-color);
+    margin: 0 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 20px;
+    }
+    
+    .creator-card h1 {
+        font-size: 24px;
+    }
+    
+    .file-upload {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .share-link {
+        flex-direction: column;
+    }
+    
+    #generatedLink {
+        width: 100%;
+    }
+    
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* Add these to your existing styles.css */
+.birthday-image-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+}
+
+.birthday-image-placeholder i {
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.share-instruction {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.share-instruction p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.share-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+    background: #e84393;
+    transform: translateY(-2px);
+}

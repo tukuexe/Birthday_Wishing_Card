@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wishes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card birthday-card-display">
+            <div id="birthdayContent">
+                <!-- Content will be loaded by JavaScript -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading birthday wishes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const birthdayContent = document.getElementById('birthdayContent');
+            
+            // Get card ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardId = urlParams.get('id');
+            
+            if (!cardId) {
+                birthdayContent.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>No birthday card found. Please check the URL.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Load card data from localStorage
+            const cardData = JSON.parse(localStorage.getItem(cardId));
+            
+            if (!cardData) {
+                birthdayContent.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Birthday card not found or may have expired.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Display the birthday card
+            let contentHTML = '';
+            
+            if (cardData.image) {
+                contentHTML += `<img src="${cardData.image}" alt="${cardData.name}" class="birthday-image">`;
+            } else {
+                contentHTML += `
+                    <div class="birthday-image-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                `;
+            }
+            
+            contentHTML += `
+                <h2 class="birthday-name">Happy Birthday, ${cardData.name}!</h2>
+                <img src="${cardData.gif}" alt="Celebration" class="celebration-gif">
+                <div class="birthday-message">${cardData.message}</div>
+                <div class="share-instruction">
+                    <p>Share this special moment with others!</p>
+                    <button id="shareBtn" class="share-btn">
+                        <i class="fas fa-share-alt"></i> Share This Card
+                    </button>
+                </div>
+            `;
+            
+            birthdayContent.innerHTML = contentHTML;
+            
+            // Add share functionality
+            const shareBtn = document.getElementById('shareBtn');
+            if (shareBtn && navigator.share) {
+                shareBtn.addEventListener('click', function() {
+                    navigator.share({
+                        title: `Birthday Wishes for ${cardData.name}`,
+                        text: `Check out these birthday wishes for ${cardData.name}!`,
+                        url: window.location.href
+                    }).catch(err => {
+                        console.log('Error sharing:', err);
+                    });
+                });
+            } else if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    alert('Share this link: ' + window.location.href);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
