@@ -51,3 +51,4 @@ const celebrationGIFs = [
 - **FileReader API** for image previews
 - **Responsive design** with mobile-first approach
 - **Web Share API** integration for social sharing
+![Birthday Magic Banner](banner.png)
